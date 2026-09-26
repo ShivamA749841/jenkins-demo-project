@@ -1,13 +1,40 @@
-public class Calculator {
+pipeline {
+    agent any
 
-    public static void main(String[] args) {
+    stages {
 
-        int a = 20;
-        int b = 10;
+        stage('Checkout') {
+            steps {
+                echo 'Getting Java project from GitHub...'
+            }
+        }
 
-        System.out.println("Addition: " + (a + b));
-        System.out.println("Subtraction: " + (a - b));
-        System.out.println("Multiplication: " + (a * b));
-        System.out.println("Division: " + (a / b));
+        stage('Build') {
+            steps {
+                bat 'javac Calculator.java'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing Calculator...'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                bat 'java Calculator'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Calculator pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Calculator pipeline failed!'
+        }
     }
 }
