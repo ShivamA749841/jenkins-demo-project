@@ -1,34 +1,13 @@
-pipeline {
-    agent any
+public class Calculator {
 
-    stages {
+    public static void main(String[] args) {
 
-        stage('Build') {
-            steps {
-                echo 'Building the project...'
-            }
-        }
+        int a = 20;
+        int b = 10;
 
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the project...'
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-
-        failure {
-            echo 'Pipeline failed!'
-        }
+        System.out.println("Addition: " + (a + b));
+        System.out.println("Subtraction: " + (a - b));
+        System.out.println("Multiplication: " + (a * b));
+        System.out.println("Division: " + (a / b));
     }
 }
